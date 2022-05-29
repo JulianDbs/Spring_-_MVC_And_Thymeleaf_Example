@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body>
+		<article th:fragment="article_resume(articleResumes)" th:each="articleResume : ${articleResumes}" class="article_resume">
+			<img class="article_resume_image" th:src="${articleResume.imageLinks[0]}"></img>
+			<div class="article_resume_content">
+				<h1 class="article_resume_title" th:text="${articleResume.name}"></h1>
+				<p class="article_resume_description" th:text="${articleResume.description}"></p>
+				<a class="article_resume_button" th:href="${articleResume.link}">View</a>
+			</div>
+		</article>
+
+		<article th:fragment="article_notice(title, message)" class="article_notice">
+			<h1 class="article_notice_title" th:text="${title}"></h1>
+			<p class="article_notice_message" th:text="${message}"></p>
+		</article>
+	</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body>
+		<nav th:fragment="nav-bar-normal" class="nav-bar-normal" id="nav-bar-normal">
+			<ul class="nav-element-container">
+	                        <a class="nav-element" th:href="@{/}">Home</a>
+	                        <a class="nav-element" th:href="@{/articles}">Articles</a>
+	                        <a class="nav-element" th:href="@{/about}">About</a>
+			</ul>
+			<div th:replace="fragments/switch :: switch-theme"></div>
+                </nav>
+		<nav th:fragment="nav-bar-mobile" class="nav-bar-mobile" id="nav-bar-mobile">
+                        <a class="nav-bar-mobile-button" id="nav-bar-mobile-button" th:onclick="mobileMenuButtonPressed();">|||</a>
+			<div class="nav-bar-mobile-menu-list" id="nav-bar-mobile-menu-list" style="display: none;">
+				<a class="nav-bar-mobile-menu-category">Themes</a>
+				<ul class="nav-bar-mobile-menu-item-container">
+					<li class="nav-bar-mobile-menu-item" th:onclick="mobileMenuDarkThemeItemPressed();">dark</li>
+					<li class="nav-bar-mobile-menu-item" th:onclick="mobileMenuLightThemeItemPressed();">light</li>
+				</ul>
+				<a class="nav-bar-mobile-menu-category">Go To</a>
+				<ul class="nav-bar-mobile-menu-item-container">
+			                <a class="nav-bar-mobile-menu-item" th:href="@{/}">Home</a>
+		                        <a class="nav-bar-mobile-menu-item" th:href="@{/articles}">Articles</a>
+		                        <a class="nav-bar-mobile-menu-item" th:href="@{/about}">About</a>
+				</ul>
+			</div>
+			<script>
+				const mobileMenuList = document.getElementById("nav-bar-mobile-menu-list");
+				const mobileMenuButton = document.getElementById("nav-bar-mobile-button");
+				const closeMobileMenuList = ()=> {mobileMenuList.style.display = "none";}
+				const showMobileMenuList = ()=> {mobileMenuList.style.display = "flex";}
+				
+				const mobileMenuButtonPressed = ()=> {
+					switch (mobileMenuList.style.display) {
+						case "none": showMobileMenuList(); break;
+						case "flex": closeMobileMenuList(); break;
+						default: closeMobileMenuList(); break;
+					}
+				};
+
+				const mobileMenuLightThemeItemPressed = ()=> {
+					if (localStorage.getItem("theme") == "dark") {
+						document.body.className = "light-theme";
+						localStorage.setItem("theme", "light");
+						closeMobileMenuList();
+					}
+				};
+
+				const mobileMenuDarkThemeItemPressed = ()=> {
+					if (localStorage.getItem("theme") == "light") {
+						document.body.className = "dark-theme";
+						localStorage.setItem("theme", "dark");
+						closeMobileMenuList();
+					}
+				};
+				window.onclick =  (e)=> {
+					if (mobileMenuList.style.display == "flex" && mobileMenuList.querySelector(":hover") == null && e.target.id == "")
+						closeMobileMenuList();
+				};
+			</script>
+                </nav>
+	</body>
+</html>
