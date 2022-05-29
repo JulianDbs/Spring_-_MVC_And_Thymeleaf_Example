@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Home</title>
+		<meta name="viewpost" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/styles/style.css}" rel="stylesheet">
+		<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}"> 
+		<meta name="color-scheme" content="dark light"></meta>
+	</head>
+	<body>
+		<header>
+			<h1>Header</h1>
+		</header>
+		<nav th:replace="fragments/navbar :: nav-bar-normal"></nav>
+		<nav th:replace="fragments/navbar :: nav-bar-mobile"></nav>
+		<script th:replace="fragments/script :: home-script"></script>
+		<main>
+			<section class="vertical-section" id="section_0">
+				<h2>Section Title</h2>
+				<article th:unless="${#arrays.isEmpty(articleResumes)}" th:replace="fragments/article :: article_resume(${articleResumes})"></article>
+				<article th:replace="${#arrays.isEmpty(articleResumes)}? ~{fragments/article :: article_notice(title='No Articles Found', message='There are no articles available at this time')} : _"></article>
+			</section>
+			<aside>
+				<h1>Aside</h1>
+			</aside>
+		</main>
+		<footer>
+			<h1>Footer</h1>
+		</footer>
+	</body>
+</html>
