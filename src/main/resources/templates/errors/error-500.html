@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <title>Error 500</title>
+                <meta name="viewpost" content="width=device-width, initial-scale=1.0">
+                <link th:href="@{/styles/style.css}" rel="stylesheet">
+		<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}"> 
+                <meta name="color-scheme" content="dark light"></meta>
+        </head>
+        <body>
+                <header>
+                        <h1>Header</h1>
+                </header>
+                <nav th:replace="fragments/navbar :: nav-bar-normal"></nav>
+                <nav th:replace="fragments/navbar :: nav-bar-mobile"></nav>
+                <script th:replace="fragments/script :: home-script"></script>
+                <main>
+                        <section class="vertical-section" id="section_0">
+                                 <div th:fragment="error(title, messsage)" class="error">
+                                        <h1 class="error_title">Error 500</h1>
+                                        <img class="error_img" th:src="@{/images/error.png}"></img>
+                                        <p class="error_message">Internal Server Error</p>
+					<a class="error_button">Continue</a>
+                                </div>
+                        </section>
+                        <aside>
+                                <h1>Aside</h1>
+                        </aside>
+                </main>
+                <footer>
+                        <h1>Footer</h1>
+                </footer>
+        </body>
+</html>
