@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title th:text="${title}"></title>
+                <meta name="viewpost" content="width=device-width, initial-scale=1.0">
+                <link th:href="@{/styles/style.css}" rel="stylesheet">
+		<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}"> 
+                <meta name="color-scheme" content="dark light"></meta>
+	</head>
+	<body>
+		<header>
+                        <h1>Header</h1>
+                </header>
+                <nav th:replace="fragments/navbar :: nav-bar-normal"></nav>
+                <nav th:replace="fragments/navbar :: nav-bar-mobile"></nav>
+                <script th:replace="fragments/script :: home-script"></script>
+		<main>
+			<article class="article">
+                        	<h1 class="article_title" id="article_title" th:text="${article.name}"></h1>
+                        	<div class="article_content">
+                        	        <img class="article_image" th:with="url= '../../' + ${article.imageLinks[0]}" th:src="${url}"></img>
+					<a class="article_data" th:text=" 'Creation Date : ' +  ${#temporals.format(article.date, 'dd/MM/yyyy')}"></a>
+					<a class="article_data" th:text="${'Author : ' + article.author}"></a>
+                        	        <p class="article_paragraph" th:text="${article.paragraphs[0]}"></p>
+                        	        <img class="article_image" th:with="url= '../../' + ${article.imageLinks[1]}" th:src="${url}"></img>
+                        	        <p class="article_paragraph" th:text="${article.paragraphs[1]}"></p>
+                        	</div>
+               	 	</article>
+
+                        <aside>
+                                <h1>Aside</h1>
+                        </aside>
+                </main>
+                <footer>
+                        <h1>Footer</h1>
+                </footer>
+	</body>
+</html>
